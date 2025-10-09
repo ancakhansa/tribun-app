@@ -14,7 +14,21 @@ factory NewsArticles.fromJson(Map<String, dynamic> json) {
       url: json['url'],
       urlToImage: json['urlToImage'],
       publishedAt: json['publishedAt'],
+      content: json['content'],
+      source: json['source'] != null ? Source.fromJson(json['source']) : null ,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'description': description,
+      'url': url,
+      'urlToImage': urlToImage,
+      'publishedAt': publishedAt,
+      'content': content,
+      'source': source?.toJson()
+    };
   }
 
   NewsArticles({required this.title, required this.description, required this.url, required this.urlToImage, required this.publishedAt, required this.content, required this.source});
