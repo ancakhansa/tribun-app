@@ -11,7 +11,11 @@ class NewsResponse {
     return NewsResponse(
       status: json['status'] ?? '',
       totalResults: json['totalResults'] ?? 0,
-      articles: (json['articles'] as List<dynamic>?).map((article) => NewsArticles.fromJson(article)).toList()
+      // kode yang digunakan untuk mengkonversi data mentah dari server
+      // siap digunakan oleh aplikasi
+      articles: (json['articles'] as List<dynamic>?)
+      ?.map((article) => NewsArticles.fromJson(article))
+      .toList() ?? []
     );
   }
 }
