@@ -11,50 +11,50 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> 
- with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _fadeAnimation;
-  late Animation<double> _scaleAnimation;
+  with SingleTickerProviderStateMixin{
+    late AnimationController _animationController;
+    late Animation<double> _fadeAnimation;
+    late Animation<double> _scaleAnimation;
 
-  @override 
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      duration: Duration(seconds: 2),
-      vsync: this
-    );
 
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    @override
+    void initState() {
+      super.initState();
+      _animationController = AnimationController(
+        duration: Duration(seconds: 2),
+        vsync: this
+      );
 
-    _scaleAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.elasticInOut,
-    ));
+      _fadeAnimation = Tween<double>(
+        begin: 0.0,
+        end: 1.0
+      ).animate(CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut
+      ));
 
-    _animationController.forward();
+      _scaleAnimation = Tween<double>(
+        begin: 0.5,
+        end: 1.0
+      ).animate(CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.elasticInOut
+      ));
 
-    // navigate to home screen after 3 second
-    Future.delayed(Duration(seconds: 3), () {
-      // TODO : defining all routes for each screens
-      Get.offAllNamed(Routes.HOME);
-    });
-  }
+      _animationController.forward();
 
-  @override
+      // navigate to homescreen after 3 sec
+      Future.delayed(Duration(seconds: 3), () {
+        Get.offAllNamed(Routes.HOME); 
+      });
+    }
+
+   @override
   void dispose() {
     _animationController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,18 +71,16 @@ class _SplashScreenState extends State<SplashScreen>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 120,
                       height: 120,
+                      width: 120,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.2),
-                            blurRadius: 20,
-                            offset: Offset(0, 10)
-                          )
-                        ]
+                        boxShadow: [BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.2),
+                          blurRadius: 20,
+                          offset: Offset(0, 10)
+                        )]
                       ),
                       child: Icon(
                         Icons.newspaper,
@@ -90,7 +88,6 @@ class _SplashScreenState extends State<SplashScreen>
                         color: AppColors.primary,
                       ),
                     ),
-                    SizedBox(height: 30),
                     Text(
                       'News App',
                       style: TextStyle(
@@ -102,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Stay Updated with latest news',
+                      'Stay Updtaed with Lates News',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white.withValues(alpha: 0.8)
